@@ -38,6 +38,25 @@ tools such as backup and cleanup require admin-capable API access in LubeLogger.
 
 ## Installation
 
+Recommended, from PyPI with pipx:
+
+```powershell
+pipx install lubelogger-mcp
+```
+
+Upgrade an existing install:
+
+```powershell
+pipx upgrade lubelogger-mcp
+```
+
+Install directly from GitHub if you want the latest source before a PyPI
+release:
+
+```powershell
+pipx install git+https://github.com/ngocleek/lubelogger-mcp.git
+```
+
 From a local checkout:
 
 ```powershell
@@ -69,8 +88,7 @@ Example MCP client config:
 {
   "mcpServers": {
     "lubelogger": {
-      "command": "python",
-      "args": ["-m", "lubelogger_mcp.server"],
+      "command": "lubelogger-mcp",
       "env": {
         "LUBELOGGER_URL": "https://your-lubelogger.example.com",
         "LUBELOGGER_API_KEY": "your-api-key"
@@ -160,3 +178,24 @@ Upload documents:
 ## License
 
 MIT
+
+## Publishing
+
+This repository includes a GitHub Actions workflow for PyPI Trusted Publishing.
+Before the first release, configure a PyPI pending trusted publisher with:
+
+- Project name: `lubelogger-mcp`
+- Owner: `ngocleek`
+- Repository: `lubelogger-mcp`
+- Workflow: `publish.yml`
+- Environment: `pypi`
+
+Release checklist:
+
+1. Update the version in `pyproject.toml` and `src/lubelogger_mcp/__init__.py`.
+2. Commit and push the release changes.
+3. Create and push a matching tag, for example `v0.1.0`.
+4. Create a GitHub Release from that tag.
+
+When the GitHub Release is published, the workflow builds the package and
+uploads it to PyPI without storing a PyPI token in GitHub secrets.

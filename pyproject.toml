@@ -31,12 +31,18 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
+  "build>=1.2",
   "pytest>=8.0",
   "pytest-asyncio>=0.23",
 ]
 
 [project.scripts]
 lubelogger-mcp = "lubelogger_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/ngocleek/lubelogger-mcp"
+Repository = "https://github.com/ngocleek/lubelogger-mcp"
+Issues = "https://github.com/ngocleek/lubelogger-mcp/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/lubelogger_mcp"]
